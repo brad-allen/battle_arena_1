@@ -4,7 +4,7 @@ class BattlePet
   
   def self.get_battle_pet pet_id
 
-    uri = URI.parse(BATTLE_PET_MANAGER_ROOT_URL + pet_id.to_s + "/authed_get")
+    uri = URI.parse(BATTLE_PET_MANAGER_ROOT_URL + 'battle_pets/' + pet_id.to_s + "/authed_get")
       http = Net::HTTP.new(uri.host, BATTLE_PET_MANAGER_ROOT_PORT)
       http.use_ssl = true
       http.verify_mode = OpenSSL::SSL::VERIFY_NONE # Sets the HTTPS verify mode
@@ -18,7 +18,7 @@ class BattlePet
 
   def self.get_training_pet pet_id
 
-    uri = URI.parse(BATTLE_PET_MANAGER_ROOT_URL + pet_id.to_s + "/generate_training_pet")
+    uri = URI.parse(BATTLE_PET_MANAGER_ROOT_URL + 'battle_pets/' + pet_id.to_s + "/generate_training_pet")
       http = Net::HTTP.new(uri.host, BATTLE_PET_MANAGER_ROOT_PORT)
       http.use_ssl = true
       http.verify_mode = OpenSSL::SSL::VERIFY_NONE # Sets the HTTPS verify mode
