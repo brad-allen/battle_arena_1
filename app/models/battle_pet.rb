@@ -5,7 +5,7 @@ class BattlePet
   def self.get_battle_pet pet_id
 
     uri = URI.parse(BATTLE_PETS_V1_API_URL + pet_id.to_s + "/authed_get")
-      http = Net::HTTP.new(uri.host, 3000)
+      http = Net::HTTP.new(uri.host, BATTLE_PET_MANAGER_ROOT_PORT)
       request = Net::HTTP::Get.new(uri.request_uri)
       response = http.request(request)
  
@@ -17,7 +17,7 @@ class BattlePet
   def self.get_training_pet pet_id
 
     uri = URI.parse(BATTLE_PETS_V1_API_URL + pet_id.to_s + "/generate_training_pet")
-      http = Net::HTTP.new(uri.host, 3000)
+      http = Net::HTTP.new(uri.host, BATTLE_PET_MANAGER_ROOT_PORT)
       request = Net::HTTP::Get.new(uri.request_uri)
       response = http.request(request)
  
