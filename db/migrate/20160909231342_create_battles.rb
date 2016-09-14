@@ -16,8 +16,8 @@ class CreateBattles < ActiveRecord::Migration[5.0]
       t.integer :battle_game_id
       t.string :status
       t.decimal :score
-      t.boolean :play_for_keeps, default: 0, null: false
-      t.boolean :is_tie, default: 0, null: false
+      t.boolean :play_for_keeps, default: false, null: false
+      t.boolean :is_tie, default: false, null: false
       t.integer :winner_experience, default: 0, null: false
       t.integer :loser_experience, default: 0, null: false
       t.integer :winner_gold, default: 0, null: false
