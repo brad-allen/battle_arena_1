@@ -53,7 +53,8 @@ Rails.application.configure do
   # Use an evented file watcher to asynchronously detect changes in source code,
   # routes, locales, etc. This feature depends on the listen gem.
   # config.file_watcher = ActiveSupport::EventedFileUpdateChecker
-
+  ENV["REDISTOGO_URL"] = 'redis://h:pc2gnfai996tfvc1fgqqcm6dev9@ec2-23-23-129-214.compute-1.amazonaws.com:29069'
+  
   BATTLE_PET_MANAGER_ROOT_URL = 'http://localhost:3000/'
   BATTLE_PETS_V1_API_URL = 'http://localhost:3000/v1/battle_pets/'
   BATTLES_V1_API_URL = 'http://localhost:3000/v1/battles/'

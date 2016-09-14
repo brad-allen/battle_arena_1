@@ -39,6 +39,8 @@ Rails.application.configure do
 
   # Raises error for missing translations
   # config.action_view.raise_on_missing_translations = true
+  ENV["REDISTOGO_URL"] = 'redis://username:password@my.host:6389'
+  
   
   BATTLE_PET_MANAGER_ROOT_URL = 'http://localhost:3000/'
   BATTLE_PETS_V1_API_URL = 'http://localhost:3000/v1/battle_pets/'

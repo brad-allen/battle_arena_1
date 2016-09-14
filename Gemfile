@@ -23,6 +23,8 @@ gem 'devise', '~> 4.2'
 #sidekiq and redis for background tasks
 gem 'sidekiq'
 
+gem 'redis'
+
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
 # Turbolinks makes navigating your web application faster. Read more: https://github.com/turbolinks/turbolinks
