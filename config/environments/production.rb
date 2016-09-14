@@ -71,10 +71,6 @@ Rails.application.configure do
   # Use default logging formatter so that PID and timestamp are not suppressed.
   config.log_formatter = ::Logger::Formatter.new
 
-  group :production do
-    gem 'pg', '0.18.4'
-  end
-
   # Use a different logger for distributed setups.
   # require 'syslog/logger'
   # config.logger = ActiveSupport::TaggedLogging.new(Syslog::Logger.new 'app-name')
@@ -88,7 +84,7 @@ Rails.application.configure do
   # Do not dump schema after migrations.
   config.active_record.dump_schema_after_migration = false
 
-  BATTLE_PET_MANAGER_ROOT_URL = 'http://localhost:3000/'
-  BATTLE_PETS_V1_API_URL = 'http://localhost:3000/v1/battle_pets/'
-  BATTLES_V1_API_URL = 'http://localhost:3000/v1/battles/'
+  BATTLE_PET_MANAGER_ROOT_URL = 'https://polar-plains-48766.herokuapp.com/'
+  BATTLE_PETS_V1_API_URL = 'https://polar-plains-48766.herokuapp.com/'
+  BATTLES_V1_API_URL = 'https://polar-plains-48766.herokuapp.com/'
 end
