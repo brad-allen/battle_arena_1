@@ -42,7 +42,7 @@ class Battle < ApplicationRecord
 	def send_battle_response
 		
       	puts "SENDING BATTLE RESPONSE" + self.inspect
-		uri = URI.parse(BATTLE_PET_MANAGER_ROOT_URL + 'battles' + id + '/battle_update')
+		uri = URI.parse(BATTLE_PET_MANAGER_ROOT_URL + 'battles/' + id + '/battle_update')
 	    http = Net::HTTP.new(uri.host, BATTLE_PET_MANAGER_ROOT_PORT)
 	    http.use_ssl = true
 		http.verify_mode = OpenSSL::SSL::VERIFY_NONE # Sets the HTTPS verify mode
