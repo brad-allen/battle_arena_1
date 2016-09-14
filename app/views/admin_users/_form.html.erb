@@ -1,0 +1,58 @@
+<%= form_for(admin_user) do |f| %>
+  <% if admin_user.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(admin_user.errors.count, "error") %> prohibited this admin_user from being saved:</h2>
+
+      <ul>
+      <% admin_user.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :username %>
+    <%= f.text_field :username %>
+  </div>
+
+  <div class="field">
+    <%= f.label :user_id %>
+    <%= f.number_field :user_id %>
+  </div>
+
+  <div class="field">
+    <%= f.label :permission %>
+    <%= f.text_field :permission %>
+  </div>
+
+  <div class="field">
+    <%= f.label :status %>
+    <%= f.text_field :status %>
+  </div>
+
+  <div class="field">
+    <%= f.label :updated_by  %>
+    <%= f.number_field :updated_by, :disabled=>true %>
+  </div>
+
+  <div class="field">
+    <%= f.label :created_by %>
+    <%= f.number_field :created_by, :disabled=>true %>
+  </div>
+
+  <div class="field">
+    <%= f.label :updated_at %>
+    <%= f.number_field :updated_at, :disabled=>true %>
+  </div>
+
+  <div class="field">
+    <%= f.label :created_at %>
+    <%= f.number_field :created_at, :disabled=>true %>
+  </div>
+
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

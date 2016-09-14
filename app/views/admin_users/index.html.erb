@@ -1,0 +1,36 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Admin Users</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Username</th>
+      <th>User</th>
+      <th>Permission</th>
+      <th>Status</th>
+      <th>Updated by</th>
+      <th>Created by</th>
+      <th colspan="2"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @admin_users.each do |admin_user| %>
+      <tr>
+        <td><%= admin_user.username %></td>
+        <td><%= admin_user.user_id %></td>
+        <td><%= admin_user.permission %></td>
+        <td><%= admin_user.status %></td>
+        <td><%= admin_user.updated_by %></td>
+        <td><%= admin_user.created_by %></td>
+        <td><%= link_to 'Show', admin_user %></td>
+        <td><%= link_to 'Edit', edit_admin_user_path(admin_user) %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Admin User', new_admin_user_path %>

@@ -1,0 +1,1 @@
+json.array! @battle_games, partial: 'battle_games/battle_game', as: :battle_game

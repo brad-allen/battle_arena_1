@@ -1,0 +1,41 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  description: MyString
+  play_for_keeps: 
+  winner_experience: 1
+  loser_experience: 1
+  winner_gold: 1
+  strength: 9.99
+  agility: 9.99
+  wit: 9.99
+  speed: 9.99
+  wisdom: 9.99
+  intelligence: 9.99
+  magic: 9.99
+  chi: 9.99
+  healing: 9.99
+  status: MyString
+  updated_by: 1
+  created_by: 1
+
+two:
+  name: MyString
+  description: MyString
+  play_for_keeps: 
+  winner_experience: 1
+  loser_experience: 1
+  winner_gold: 1
+  strength: 9.99
+  agility: 9.99
+  wit: 9.99
+  speed: 9.99
+  wisdom: 9.99
+  intelligence: 9.99
+  magic: 9.99
+  chi: 9.99
+  healing: 9.99
+  status: MyString
+  updated_by: 1
+  created_by: 1

@@ -1,0 +1,2 @@
+json.extract! battle, :id, :name, :description, :pet1_id, :pet2_id, :battled_on, :winning_pet_id, :winning_user_id, :battle_game_id, :, :play_for_keeps, :is_tie, :winner_experience, :loser_experience, :winner_gold, :updated_by, :created_by, :created_at, :updated_at
+json.url battle_url(battle, format: :json)
