@@ -25,8 +25,8 @@ class BattlePet
       request = Net::HTTP::Get.new(uri.request_uri)
       response = http.request(request)
  
-    data = JSON.parse(response.body)
-    BattlePet.parse_pet_response_body data
+      data = JSON.parse(response.body)
+      BattlePet.parse_pet_response_body data
   end
 
     def self.parse_pet_response_body data
