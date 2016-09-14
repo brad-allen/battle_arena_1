@@ -6,6 +6,8 @@ class BattlePet
 
     uri = URI.parse(BATTLE_PETS_V1_API_URL + pet_id.to_s + "/authed_get")
       http = Net::HTTP.new(uri.host, BATTLE_PET_MANAGER_ROOT_PORT)
+      http.use_ssl = true
+      http.verify_mode = OpenSSL::SSL::VERIFY_NONE # Sets the HTTPS verify mode
       request = Net::HTTP::Get.new(uri.request_uri)
       response = http.request(request)
  
@@ -18,6 +20,8 @@ class BattlePet
 
     uri = URI.parse(BATTLE_PETS_V1_API_URL + pet_id.to_s + "/generate_training_pet")
       http = Net::HTTP.new(uri.host, BATTLE_PET_MANAGER_ROOT_PORT)
+      http.use_ssl = true
+      http.verify_mode = OpenSSL::SSL::VERIFY_NONE # Sets the HTTPS verify mode
       request = Net::HTTP::Get.new(uri.request_uri)
       response = http.request(request)
  

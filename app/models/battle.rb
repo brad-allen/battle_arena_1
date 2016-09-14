@@ -44,6 +44,8 @@ class Battle < ApplicationRecord
       	puts "SENDING BATTLE RESPONSE" + self.inspect
 		uri = URI.parse(BATTLES_V1_API_URL + '1/battle_update')
 	    http = Net::HTTP.new(uri.host, BATTLE_PET_MANAGER_ROOT_PORT)
+	    http.use_ssl = true
+		http.verify_mode = OpenSSL::SSL::VERIFY_NONE # Sets the HTTPS verify mode
 	    request = Net::HTTP::Post.new(uri.request_uri)
 	    request.set_form_data(self.as_json)
 
