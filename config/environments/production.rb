@@ -85,10 +85,8 @@ Rails.application.configure do
   config.active_record.dump_schema_after_migration = false
 
   ENV["REDISTOGO_URL"] = 'redis://username:password@my.host:6389'
-  
+
   BATTLE_PET_MANAGER_ROOT_URL = 'https://polar-plains-48766.herokuapp.com/'
-  BATTLE_PETS_V1_API_URL = 'https://polar-plains-48766.herokuapp.com/v1/battle_pets/'
-  BATTLES_V1_API_URL = 'https://polar-plains-48766.herokuapp.com/'
 
   BATTLE_PET_MANAGER_ROOT_PORT = 443
 end
