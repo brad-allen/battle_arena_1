@@ -58,4 +58,6 @@ Rails.application.configure do
   BATTLE_PET_MANAGER_ROOT_URL = 'http://localhost:3000/'
 
   BATTLE_PET_MANAGER_ROOT_PORT = 3000
+
+  USE_SSL = false
 end

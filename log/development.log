@@ -12745,3 +12745,288 @@ Completed 200 OK in 496ms (Views: 429.6ms | ActiveRecord: 2.0ms)
   [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
   [1m[36mUser Exists (0.5ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "admin@battle.com"], ["LIMIT", 1]]
   [1m[35m (0.0ms)[0m  [1m[31mrollback transaction[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.0ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ?[0m  [["key", :environment]]
+  [1m[36mActiveRecord::SchemaMigration Load (0.5ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ?[0m  [["key", :environment]]
+  [1m[36mActiveRecord::SchemaMigration Load (0.0ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ?[0m  [["key", :environment]]
+  [1m[35m (12.9ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" varchar NOT NULL PRIMARY KEY)[0m
+  [1m[35m (79.2ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" varchar NOT NULL PRIMARY KEY, "value" varchar, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL)[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.5ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Migrating to CreateBattles (20160909231342)
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.9ms)[0m  [1m[35mCREATE TABLE "battles" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar, "description" varchar, "call_auth_code" varchar, "original_id" integer, "arena_id" integer, "user1_id" integer, "user2_id" integer, "pet1_id" integer, "pet2_id" integer, "battled_on" datetime, "winning_pet_id" integer, "winning_user_id" integer, "battle_game_id" integer, "status" varchar, "score" decimal, "play_for_keeps" boolean DEFAULT 'f' NOT NULL, "is_tie" boolean DEFAULT 'f' NOT NULL, "winner_experience" integer DEFAULT 0 NOT NULL, "loser_experience" integer DEFAULT 0 NOT NULL, "winner_gold" integer DEFAULT 0 NOT NULL, "updated_by" integer, "created_by" integer, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL)[0m
+  [1m[35mSQL (0.0ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20160909231342"]]
+  [1m[35m (10.1ms)[0m  [1m[36mcommit transaction[0m
+Migrating to CreateBattleGames (20160909231816)
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (1.0ms)[0m  [1m[35mCREATE TABLE "battle_games" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar, "description" varchar, "strength" decimal DEFAULT 0 NOT NULL, "agility" decimal DEFAULT 0 NOT NULL, "wit" decimal DEFAULT 0 NOT NULL, "speed" decimal DEFAULT 0 NOT NULL, "wisdom" decimal DEFAULT 0 NOT NULL, "intelligence" decimal DEFAULT 0 NOT NULL, "magic" decimal DEFAULT 0 NOT NULL, "chi" decimal DEFAULT 0 NOT NULL, "healing" decimal DEFAULT 0 NOT NULL, "status" varchar, "updated_by" integer, "created_by" integer, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL)[0m
+  [1m[35mSQL (0.5ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20160909231816"]]
+  [1m[35m (10.9ms)[0m  [1m[36mcommit transaction[0m
+Migrating to DeviseCreateUsers (20160910151453)
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (1.2ms)[0m  [1m[35mCREATE TABLE "users" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "email" varchar DEFAULT '' NOT NULL, "encrypted_password" varchar DEFAULT '' NOT NULL, "reset_password_token" varchar, "reset_password_sent_at" datetime, "remember_created_at" datetime, "sign_in_count" integer DEFAULT 0 NOT NULL, "current_sign_in_at" datetime, "last_sign_in_at" datetime, "current_sign_in_ip" varchar, "last_sign_in_ip" varchar, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL)[0m
+  [1m[35m (0.0ms)[0m  [1m[34mselect sqlite_version(*)[0m
+  [1m[35m (1.2ms)[0m  [1m[35mCREATE UNIQUE INDEX "index_users_on_email" ON "users" ("email")[0m
+  [1m[35m (0.0ms)[0m  [1m[34m            SELECT sql
+            FROM sqlite_master
+            WHERE name='index_users_on_email' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_users_on_email' AND type='index'
+[0m
+  [1m[35m (0.0ms)[0m  [1m[35mCREATE UNIQUE INDEX "index_users_on_reset_password_token" ON "users" ("reset_password_token")[0m
+  [1m[35mSQL (0.0ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20160910151453"]]
+  [1m[35m (10.0ms)[0m  [1m[36mcommit transaction[0m
+Migrating to CreateAdminUsers (20160910151704)
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (1.0ms)[0m  [1m[35mCREATE TABLE "admin_users" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "username" varchar, "user_id" integer, "permission" varchar, "status" varchar, "updated_by" integer, "created_by" integer, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL)[0m
+  [1m[35mSQL (0.0ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20160910151704"]]
+  [1m[35m (10.0ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.5ms)[0m  [1m[34mSELECT  "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", :environment], ["LIMIT", 1]]
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35mSQL (1.0ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["key", "environment"], ["value", "development"], ["created_at", 2016-09-15 14:06:52 UTC], ["updated_at", 2016-09-15 14:06:52 UTC]]
+  [1m[35m (9.9ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.0ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.5ms)[0m  [1m[34m            SELECT sql
+            FROM sqlite_master
+            WHERE name='index_users_on_reset_password_token' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_users_on_reset_password_token' AND type='index'
+[0m
+  [1m[35m (0.5ms)[0m  [1m[34m            SELECT sql
+            FROM sqlite_master
+            WHERE name='index_users_on_email' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_users_on_email' AND type='index'
+[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.5ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Exists (0.0ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "admin@battle.com"], ["LIMIT", 1]]
+  [1m[35mSQL (1.2ms)[0m  [1m[32mINSERT INTO "users" ("email", "encrypted_password", "current_sign_in_at", "current_sign_in_ip", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["email", "admin@battle.com"], ["encrypted_password", "$2a$11$3erLW.rivEkOhLaLUb7myuZhHsJBnbAHC9nprWYEfaEyZUD1B9oMu"], ["current_sign_in_at", 2016-09-15 14:07:43 UTC], ["current_sign_in_ip", "127.0.0.1"], ["created_at", 2016-09-15 14:07:44 UTC], ["updated_at", 2016-09-15 14:07:44 UTC]]
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[35mSQL (0.0ms)[0m  [1m[32mINSERT INTO "admin_users" ("username", "user_id", "permission", "status", "updated_by", "created_by", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?, ?)[0m  [["username", "Unknown Arena Master"], ["user_id", 1], ["permission", "user"], ["status", "active"], ["updated_by", 1], ["created_by", 1], ["created_at", 2016-09-15 14:07:44 UTC], ["updated_at", 2016-09-15 14:07:44 UTC]]
+  [1m[35m (10.3ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mAdminUser Load (0.5ms)[0m  [1m[34mSELECT  "admin_users".* FROM "admin_users" WHERE "admin_users"."user_id" = ? LIMIT ?[0m  [["user_id", 1], ["LIMIT", 1]]
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[35mSQL (1.0ms)[0m  [1m[33mUPDATE "admin_users" SET "permission" = ?, "updated_at" = ? WHERE "admin_users"."id" = ?[0m  [["permission", "admin"], ["updated_at", 2016-09-15 14:07:44 UTC], ["id", 1]]
+  [1m[35m (10.0ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.5ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Exists (0.0ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "admin2@battle.com"], ["LIMIT", 1]]
+  [1m[35mSQL (1.5ms)[0m  [1m[32mINSERT INTO "users" ("email", "encrypted_password", "current_sign_in_at", "current_sign_in_ip", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["email", "admin2@battle.com"], ["encrypted_password", "$2a$11$3erLW.rivEkOhLaLUb7myuZhHsJBnbAHC9nprWYEfaEyZUD1B9oMu"], ["current_sign_in_at", 2016-09-15 14:07:44 UTC], ["current_sign_in_ip", "127.0.0.1"], ["created_at", 2016-09-15 14:07:44 UTC], ["updated_at", 2016-09-15 14:07:44 UTC]]
+  [1m[36mUser Load (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[35mSQL (0.0ms)[0m  [1m[32mINSERT INTO "admin_users" ("username", "user_id", "permission", "status", "updated_by", "created_by", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?, ?)[0m  [["username", "Unknown Arena Master"], ["user_id", 2], ["permission", "user"], ["status", "active"], ["updated_by", 2], ["created_by", 2], ["created_at", 2016-09-15 14:07:44 UTC], ["updated_at", 2016-09-15 14:07:44 UTC]]
+  [1m[35m (11.5ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mAdminUser Load (0.0ms)[0m  [1m[34mSELECT  "admin_users".* FROM "admin_users" WHERE "admin_users"."user_id" = ? LIMIT ?[0m  [["user_id", 2], ["LIMIT", 1]]
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[35mSQL (1.0ms)[0m  [1m[33mUPDATE "admin_users" SET "permission" = ?, "updated_at" = ? WHERE "admin_users"."id" = ?[0m  [["permission", "admin"], ["updated_at", 2016-09-15 14:07:44 UTC], ["id", 2]]
+  [1m[35m (10.0ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35mSQL (1.1ms)[0m  [1m[32mINSERT INTO "battle_games" ("name", "description", "strength", "agility", "wit", "speed", "wisdom", "intelligence", "magic", "chi", "healing", "status", "updated_by", "created_by", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)[0m  [["name", "Battle Pets Battle"], ["description", "Default battle"], ["strength", #<BigDecimal:5da5708,'0.14E1',18(36)>], ["agility", #<BigDecimal:5da4e38,'0.12E1',18(36)>], ["wit", #<BigDecimal:5da4760,'0.2E0',9(36)>], ["speed", #<BigDecimal:5da4130,'0.15E1',18(36)>], ["wisdom", #<BigDecimal:5d7b978,'0.11E1',18(36)>], ["intelligence", #<BigDecimal:5d7afa0,'0.12E1',18(36)>], ["magic", #<BigDecimal:5d7a808,'0.13E1',18(36)>], ["chi", #<BigDecimal:5d7a0d0,'0.11E1',18(36)>], ["healing", #<BigDecimal:5d79bc0,'0.1E1',9(27)>], ["status", "active"], ["updated_by", 1], ["created_by", 1], ["created_at", 2016-09-15 14:07:44 UTC], ["updated_at", 2016-09-15 14:07:44 UTC]]
+  [1m[35m (9.5ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35mSQL (1.0ms)[0m  [1m[32mINSERT INTO "battle_games" ("name", "description", "strength", "agility", "speed", "wisdom", "intelligence", "chi", "status", "updated_by", "created_by", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)[0m  [["name", "Feat of Strength"], ["description", "You better be strong for this one"], ["strength", #<BigDecimal:5d69378,'0.3E1',9(27)>], ["agility", #<BigDecimal:5d68ec8,'0.5E0',9(36)>], ["speed", #<BigDecimal:5d681c0,'0.13E1',18(36)>], ["wisdom", #<BigDecimal:5d63870,'0.3E0',9(36)>], ["intelligence", #<BigDecimal:5d630f0,'0.4E0',9(36)>], ["chi", #<BigDecimal:5d626d0,'0.11E1',18(36)>], ["status", "active"], ["updated_by", 1], ["created_by", 1], ["created_at", 2016-09-15 14:07:44 UTC], ["updated_at", 2016-09-15 14:07:44 UTC]]
+  [1m[35m (11.2ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35mSQL (0.5ms)[0m  [1m[32mINSERT INTO "battle_games" ("name", "description", "strength", "agility", "wit", "speed", "wisdom", "intelligence", "magic", "chi", "healing", "status", "updated_by", "created_by", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)[0m  [["name", "Speed Devils"], ["description", "Only the fastest survive"], ["strength", #<BigDecimal:5d3a8f0,'0.14E1',18(36)>], ["agility", #<BigDecimal:5d3a128,'0.12E1',18(36)>], ["wit", #<BigDecimal:5d399d8,'0.8E0',9(36)>], ["speed", #<BigDecimal:5d38eb0,'0.65E1',18(36)>], ["wisdom", #<BigDecimal:5d38808,'0.1E1',9(27)>], ["intelligence", #<BigDecimal:5d385b0,'0.1E1',9(27)>], ["magic", #<BigDecimal:5d33f48,'0.3E0',9(36)>], ["chi", #<BigDecimal:5d33348,'0.5E0',9(36)>], ["healing", #<BigDecimal:5d32730,'0.4E0',9(36)>], ["status", "active"], ["updated_by", 1], ["created_by", 1], ["created_at", 2016-09-15 14:07:44 UTC], ["updated_at", 2016-09-15 14:07:44 UTC]]
+  [1m[35m (10.0ms)[0m  [1m[36mcommit transaction[0m
+Started GET "/" for ::1 at 2016-09-15 08:09:47 -0600
+  [1m[36mActiveRecord::SchemaMigration Load (0.0ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by HomeController#index as HTML
+  [1m[36mUser Load (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mAdminUser Load (0.5ms)[0m  [1m[34mSELECT  "admin_users".* FROM "admin_users" WHERE "admin_users"."user_id" = ? LIMIT ?[0m  [["user_id", 1], ["LIMIT", 1]]
+  Rendering home/index.html.erb within layouts/application
+  Rendered home/index.html.erb within layouts/application (4.5ms)
+Completed 200 OK in 847ms (Views: 757.0ms | ActiveRecord: 3.0ms)
+
+
+Started POST "//v1/battles/9/fight" for ::1 at 2016-09-15 08:20:58 -0600
+  [1m[36mActiveRecord::SchemaMigration Load (0.5ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by V1::BattlesController#fight as JSON
+  Parameters: {"id"=>"9", "name"=>"Training", "description"=>nil, "call_auth_code"=>"5e8ed73c-a821-4d12-ab8b-370222bcc368", "arena_id"=>"1", "user1_id"=>"1", "user2_id"=>"-1", "pet1_id"=>"1", "pet2_id"=>"-1", "battled_on"=>nil, "winning_pet_id"=>nil, "winning_user_id"=>nil, "battle_game_id"=>"1", "status"=>"accepted", "score"=>nil, "play_for_keeps"=>"false", "is_tie"=>"false", "winner_experience"=>"100", "loser_experience"=>"10", "winner_gold"=>"25", "updated_by"=>"1", "created_by"=>"1", "created_at"=>"2016-09-15 14:20:58 UTC", "updated_at"=>"2016-09-15 14:20:58 UTC", "battle_id"=>"9"}
+Unpermitted parameters: arena_id, battled_on, winning_pet_id, winning_user_id, score, play_for_keeps, is_tie, winner_experience, loser_experience, winner_gold, updated_by, created_by, created_at, updated_at, format, battle_id
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35mSQL (1.0ms)[0m  [1m[32mINSERT INTO "battles" ("id", "name", "call_auth_code", "original_id", "user1_id", "user2_id", "pet1_id", "pet2_id", "battle_game_id", "status", "updated_by", "created_by", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)[0m  [["id", 9], ["name", "Training"], ["call_auth_code", "5e8ed73c-a821-4d12-ab8b-370222bcc368"], ["original_id", 9], ["user1_id", 1], ["user2_id", -1], ["pet1_id", 1], ["pet2_id", -1], ["battle_game_id", 1], ["status", "accepted"], ["updated_by", 1], ["created_by", 1], ["created_at", 2016-09-15 14:20:58 UTC], ["updated_at", 2016-09-15 14:20:58 UTC]]
+  [1m[35m (10.5ms)[0m  [1m[36mcommit transaction[0m
+Completed 200 OK in 67ms (ActiveRecord: 13.0ms)
+
+
+  [1m[36mBattle Load (0.0ms)[0m  [1m[34mSELECT  "battles".* FROM "battles" WHERE "battles"."id" = ? LIMIT ?[0m  [["id", 9], ["LIMIT", 1]]
+Started POST "//v1/battles/10/fight" for ::1 at 2016-09-15 08:21:40 -0600
+Processing by V1::BattlesController#fight as JSON
+  Parameters: {"id"=>"10", "name"=>"Training", "description"=>nil, "call_auth_code"=>"8a6b4dbf-d0e6-475e-a1d0-c3a50a5356fc", "arena_id"=>"1", "user1_id"=>"1", "user2_id"=>"-1", "pet1_id"=>"1", "pet2_id"=>"-1", "battled_on"=>nil, "winning_pet_id"=>nil, "winning_user_id"=>nil, "battle_game_id"=>"1", "status"=>"accepted", "score"=>nil, "play_for_keeps"=>"false", "is_tie"=>"false", "winner_experience"=>"100", "loser_experience"=>"10", "winner_gold"=>"25", "updated_by"=>"1", "created_by"=>"1", "created_at"=>"2016-09-15 14:21:40 UTC", "updated_at"=>"2016-09-15 14:21:40 UTC", "battle_id"=>"10"}
+Unpermitted parameters: arena_id, battled_on, winning_pet_id, winning_user_id, score, play_for_keeps, is_tie, winner_experience, loser_experience, winner_gold, updated_by, created_by, created_at, updated_at, format, battle_id
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35mSQL (1.5ms)[0m  [1m[32mINSERT INTO "battles" ("id", "name", "call_auth_code", "original_id", "user1_id", "user2_id", "pet1_id", "pet2_id", "battle_game_id", "status", "updated_by", "created_by", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)[0m  [["id", 10], ["name", "Training"], ["call_auth_code", "8a6b4dbf-d0e6-475e-a1d0-c3a50a5356fc"], ["original_id", 10], ["user1_id", 1], ["user2_id", -1], ["pet1_id", 1], ["pet2_id", -1], ["battle_game_id", 1], ["status", "accepted"], ["updated_by", 1], ["created_by", 1], ["created_at", 2016-09-15 14:21:40 UTC], ["updated_at", 2016-09-15 14:21:40 UTC]]
+  [1m[35m (9.5ms)[0m  [1m[36mcommit transaction[0m
+Completed 200 OK in 19ms (ActiveRecord: 11.0ms)
+
+
+  [1m[36mBattle Load (0.5ms)[0m  [1m[34mSELECT  "battles".* FROM "battles" WHERE "battles"."id" = ? LIMIT ?[0m  [["id", 10], ["LIMIT", 1]]
+  [1m[36mBattleGame Load (0.5ms)[0m  [1m[34mSELECT  "battle_games".* FROM "battle_games" WHERE "battle_games"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35mSQL (1.0ms)[0m  [1m[33mUPDATE "battles" SET "score" = ?, "battled_on" = ?, "status" = ?, "winning_pet_id" = ?, "winning_user_id" = ?, "updated_at" = ? WHERE "battles"."id" = ?[0m  [["score", #<BigDecimal:5c673a8,'-0.157E2',18(27)>], ["battled_on", 2016-09-15 14:21:40 UTC], ["status", "battled"], ["winning_pet_id", -1], ["winning_user_id", -1], ["updated_at", 2016-09-15 14:21:40 UTC], ["id", 10]]
+  [1m[35m (9.5ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mBattle Load (1.0ms)[0m  [1m[34mSELECT  "battles".* FROM "battles" WHERE "battles"."id" = ? LIMIT ?[0m  [["id", 9], ["LIMIT", 1]]
+  [1m[36mBattleGame Load (0.5ms)[0m  [1m[34mSELECT  "battle_games".* FROM "battle_games" WHERE "battle_games"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35mSQL (1.0ms)[0m  [1m[33mUPDATE "battles" SET "score" = ?, "battled_on" = ?, "status" = ?, "winning_pet_id" = ?, "winning_user_id" = ?, "updated_at" = ? WHERE "battles"."id" = ?[0m  [["score", #<BigDecimal:600d440,'-0.208E2',18(27)>], ["battled_on", 2016-09-15 14:21:51 UTC], ["status", "battled"], ["winning_pet_id", -1], ["winning_user_id", -1], ["updated_at", 2016-09-15 14:21:51 UTC], ["id", 9]]
+  [1m[35m (10.0ms)[0m  [1m[36mcommit transaction[0m
+Started POST "//v1/battles/11/fight" for ::1 at 2016-09-15 08:22:03 -0600
+Processing by V1::BattlesController#fight as JSON
+  Parameters: {"id"=>"11", "name"=>"Training", "description"=>nil, "call_auth_code"=>"5cf29d0f-5b33-4a21-a377-e456c8a17564", "arena_id"=>"1", "user1_id"=>"1", "user2_id"=>"-1", "pet1_id"=>"1", "pet2_id"=>"-1", "battled_on"=>nil, "winning_pet_id"=>nil, "winning_user_id"=>nil, "battle_game_id"=>"1", "status"=>"accepted", "score"=>nil, "play_for_keeps"=>"false", "is_tie"=>"false", "winner_experience"=>"100", "loser_experience"=>"10", "winner_gold"=>"25", "updated_by"=>"1", "created_by"=>"1", "created_at"=>"2016-09-15 14:22:03 UTC", "updated_at"=>"2016-09-15 14:22:03 UTC", "battle_id"=>"11"}
+Unpermitted parameters: arena_id, battled_on, winning_pet_id, winning_user_id, score, play_for_keeps, is_tie, winner_experience, loser_experience, winner_gold, updated_by, created_by, created_at, updated_at, format, battle_id
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35mSQL (1.5ms)[0m  [1m[32mINSERT INTO "battles" ("id", "name", "call_auth_code", "original_id", "user1_id", "user2_id", "pet1_id", "pet2_id", "battle_game_id", "status", "updated_by", "created_by", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)[0m  [["id", 11], ["name", "Training"], ["call_auth_code", "5cf29d0f-5b33-4a21-a377-e456c8a17564"], ["original_id", 11], ["user1_id", 1], ["user2_id", -1], ["pet1_id", 1], ["pet2_id", -1], ["battle_game_id", 1], ["status", "accepted"], ["updated_by", 1], ["created_by", 1], ["created_at", 2016-09-15 14:22:03 UTC], ["updated_at", 2016-09-15 14:22:03 UTC]]
+  [1m[35m (10.0ms)[0m  [1m[36mcommit transaction[0m
+Completed 200 OK in 18ms (ActiveRecord: 11.5ms)
+
+
+  [1m[36mBattle Load (1.0ms)[0m  [1m[34mSELECT  "battles".* FROM "battles" WHERE "battles"."id" = ? LIMIT ?[0m  [["id", 11], ["LIMIT", 1]]
+  [1m[36mBattleGame Load (0.0ms)[0m  [1m[34mSELECT  "battle_games".* FROM "battle_games" WHERE "battle_games"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35mSQL (1.0ms)[0m  [1m[33mUPDATE "battles" SET "score" = ?, "battled_on" = ?, "status" = ?, "winning_pet_id" = ?, "winning_user_id" = ?, "updated_at" = ? WHERE "battles"."id" = ?[0m  [["score", #<BigDecimal:4edc230,'-0.247E2',18(27)>], ["battled_on", 2016-09-15 14:22:04 UTC], ["status", "battled"], ["winning_pet_id", -1], ["winning_user_id", -1], ["updated_at", 2016-09-15 14:22:04 UTC], ["id", 11]]
+  [1m[35m (9.5ms)[0m  [1m[36mcommit transaction[0m
+Started POST "//v1/battles/12/fight" for ::1 at 2016-09-15 08:22:04 -0600
+Processing by V1::BattlesController#fight as JSON
+  Parameters: {"id"=>"12", "name"=>"Training", "description"=>nil, "call_auth_code"=>"bc022e40-b21a-4796-a4a3-0db258c8ff03", "arena_id"=>"1", "user1_id"=>"1", "user2_id"=>"-1", "pet1_id"=>"1", "pet2_id"=>"-1", "battled_on"=>nil, "winning_pet_id"=>nil, "winning_user_id"=>nil, "battle_game_id"=>"1", "status"=>"accepted", "score"=>nil, "play_for_keeps"=>"false", "is_tie"=>"false", "winner_experience"=>"100", "loser_experience"=>"10", "winner_gold"=>"25", "updated_by"=>"1", "created_by"=>"1", "created_at"=>"2016-09-15 14:22:04 UTC", "updated_at"=>"2016-09-15 14:22:04 UTC", "battle_id"=>"12"}
+Unpermitted parameters: arena_id, battled_on, winning_pet_id, winning_user_id, score, play_for_keeps, is_tie, winner_experience, loser_experience, winner_gold, updated_by, created_by, created_at, updated_at, format, battle_id
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35mSQL (1.0ms)[0m  [1m[32mINSERT INTO "battles" ("id", "name", "call_auth_code", "original_id", "user1_id", "user2_id", "pet1_id", "pet2_id", "battle_game_id", "status", "updated_by", "created_by", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)[0m  [["id", 12], ["name", "Training"], ["call_auth_code", "bc022e40-b21a-4796-a4a3-0db258c8ff03"], ["original_id", 12], ["user1_id", 1], ["user2_id", -1], ["pet1_id", 1], ["pet2_id", -1], ["battle_game_id", 1], ["status", "accepted"], ["updated_by", 1], ["created_by", 1], ["created_at", 2016-09-15 14:22:04 UTC], ["updated_at", 2016-09-15 14:22:04 UTC]]
+  [1m[35m (9.9ms)[0m  [1m[36mcommit transaction[0m
+Completed 200 OK in 17ms (ActiveRecord: 10.9ms)
+
+
+  [1m[36mBattle Load (0.5ms)[0m  [1m[34mSELECT  "battles".* FROM "battles" WHERE "battles"."id" = ? LIMIT ?[0m  [["id", 12], ["LIMIT", 1]]
+  [1m[36mBattleGame Load (0.5ms)[0m  [1m[34mSELECT  "battle_games".* FROM "battle_games" WHERE "battle_games"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35mSQL (1.5ms)[0m  [1m[33mUPDATE "battles" SET "score" = ?, "battled_on" = ?, "status" = ?, "winning_pet_id" = ?, "winning_user_id" = ?, "updated_at" = ? WHERE "battles"."id" = ?[0m  [["score", #<BigDecimal:5b81fb0,'-0.379E2',18(27)>], ["battled_on", 2016-09-15 14:22:05 UTC], ["status", "battled"], ["winning_pet_id", -1], ["winning_user_id", -1], ["updated_at", 2016-09-15 14:22:05 UTC], ["id", 12]]
+  [1m[35m (17.0ms)[0m  [1m[36mcommit transaction[0m
+Started POST "//v1/battles/13/fight" for ::1 at 2016-09-15 08:22:05 -0600
+Processing by V1::BattlesController#fight as JSON
+  Parameters: {"id"=>"13", "name"=>"Training", "description"=>nil, "call_auth_code"=>"cd2bd924-4f32-4fdf-9bf9-422523d18e72", "arena_id"=>"1", "user1_id"=>"1", "user2_id"=>"-1", "pet1_id"=>"1", "pet2_id"=>"-1", "battled_on"=>nil, "winning_pet_id"=>nil, "winning_user_id"=>nil, "battle_game_id"=>"1", "status"=>"accepted", "score"=>nil, "play_for_keeps"=>"false", "is_tie"=>"false", "winner_experience"=>"100", "loser_experience"=>"10", "winner_gold"=>"25", "updated_by"=>"1", "created_by"=>"1", "created_at"=>"2016-09-15 14:22:05 UTC", "updated_at"=>"2016-09-15 14:22:05 UTC", "battle_id"=>"13"}
+Unpermitted parameters: arena_id, battled_on, winning_pet_id, winning_user_id, score, play_for_keeps, is_tie, winner_experience, loser_experience, winner_gold, updated_by, created_by, created_at, updated_at, format, battle_id
+  [1m[35m (0.5ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35mSQL (1.5ms)[0m  [1m[32mINSERT INTO "battles" ("id", "name", "call_auth_code", "original_id", "user1_id", "user2_id", "pet1_id", "pet2_id", "battle_game_id", "status", "updated_by", "created_by", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)[0m  [["id", 13], ["name", "Training"], ["call_auth_code", "cd2bd924-4f32-4fdf-9bf9-422523d18e72"], ["original_id", 13], ["user1_id", 1], ["user2_id", -1], ["pet1_id", 1], ["pet2_id", -1], ["battle_game_id", 1], ["status", "accepted"], ["updated_by", 1], ["created_by", 1], ["created_at", 2016-09-15 14:22:05 UTC], ["updated_at", 2016-09-15 14:22:05 UTC]]
+  [1m[35m (9.5ms)[0m  [1m[36mcommit transaction[0m
+Completed 200 OK in 19ms (ActiveRecord: 11.5ms)
+
+
+  [1m[36mBattle Load (0.5ms)[0m  [1m[34mSELECT  "battles".* FROM "battles" WHERE "battles"."id" = ? LIMIT ?[0m  [["id", 13], ["LIMIT", 1]]
+  [1m[36mBattleGame Load (0.5ms)[0m  [1m[34mSELECT  "battle_games".* FROM "battle_games" WHERE "battle_games"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35mSQL (1.0ms)[0m  [1m[33mUPDATE "battles" SET "score" = ?, "battled_on" = ?, "status" = ?, "winning_pet_id" = ?, "winning_user_id" = ?, "updated_at" = ? WHERE "battles"."id" = ?[0m  [["score", #<BigDecimal:58af208,'-0.134E2',18(27)>], ["battled_on", 2016-09-15 14:22:06 UTC], ["status", "battled"], ["winning_pet_id", -1], ["winning_user_id", -1], ["updated_at", 2016-09-15 14:22:06 UTC], ["id", 13]]
+  [1m[35m (10.5ms)[0m  [1m[36mcommit transaction[0m
+Started POST "//v1/battles/14/fight" for ::1 at 2016-09-15 08:22:07 -0600
+Processing by V1::BattlesController#fight as JSON
+  Parameters: {"id"=>"14", "name"=>"Training", "description"=>nil, "call_auth_code"=>"f30caa68-aa63-4168-a32d-cdb40c9a8269", "arena_id"=>"1", "user1_id"=>"1", "user2_id"=>"-1", "pet1_id"=>"1", "pet2_id"=>"-1", "battled_on"=>nil, "winning_pet_id"=>nil, "winning_user_id"=>nil, "battle_game_id"=>"1", "status"=>"accepted", "score"=>nil, "play_for_keeps"=>"false", "is_tie"=>"false", "winner_experience"=>"100", "loser_experience"=>"10", "winner_gold"=>"25", "updated_by"=>"1", "created_by"=>"1", "created_at"=>"2016-09-15 14:22:07 UTC", "updated_at"=>"2016-09-15 14:22:07 UTC", "battle_id"=>"14"}
+Unpermitted parameters: arena_id, battled_on, winning_pet_id, winning_user_id, score, play_for_keeps, is_tie, winner_experience, loser_experience, winner_gold, updated_by, created_by, created_at, updated_at, format, battle_id
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35mSQL (1.0ms)[0m  [1m[32mINSERT INTO "battles" ("id", "name", "call_auth_code", "original_id", "user1_id", "user2_id", "pet1_id", "pet2_id", "battle_game_id", "status", "updated_by", "created_by", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)[0m  [["id", 14], ["name", "Training"], ["call_auth_code", "f30caa68-aa63-4168-a32d-cdb40c9a8269"], ["original_id", 14], ["user1_id", 1], ["user2_id", -1], ["pet1_id", 1], ["pet2_id", -1], ["battle_game_id", 1], ["status", "accepted"], ["updated_by", 1], ["created_by", 1], ["created_at", 2016-09-15 14:22:07 UTC], ["updated_at", 2016-09-15 14:22:07 UTC]]
+  [1m[35m (11.5ms)[0m  [1m[36mcommit transaction[0m
+Completed 200 OK in 21ms (ActiveRecord: 12.5ms)
+
+
+  [1m[36mBattle Load (0.5ms)[0m  [1m[34mSELECT  "battles".* FROM "battles" WHERE "battles"."id" = ? LIMIT ?[0m  [["id", 14], ["LIMIT", 1]]
+  [1m[36mBattleGame Load (0.0ms)[0m  [1m[34mSELECT  "battle_games".* FROM "battle_games" WHERE "battle_games"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35mSQL (1.0ms)[0m  [1m[33mUPDATE "battles" SET "score" = ?, "battled_on" = ?, "status" = ?, "winning_pet_id" = ?, "winning_user_id" = ?, "updated_at" = ? WHERE "battles"."id" = ?[0m  [["score", #<BigDecimal:62be678,'-0.202E2',18(27)>], ["battled_on", 2016-09-15 14:22:07 UTC], ["status", "battled"], ["winning_pet_id", -1], ["winning_user_id", -1], ["updated_at", 2016-09-15 14:22:07 UTC], ["id", 14]]
+  [1m[35m (12.0ms)[0m  [1m[36mcommit transaction[0m
+Started POST "//v1/battles/15/fight" for ::1 at 2016-09-15 08:22:15 -0600
+Processing by V1::BattlesController#fight as JSON
+  Parameters: {"id"=>"15", "name"=>"Training", "description"=>nil, "call_auth_code"=>"81c6c97c-9bb0-4402-8c52-6b8d836e4cd5", "arena_id"=>"1", "user1_id"=>"1", "user2_id"=>"-1", "pet1_id"=>"1", "pet2_id"=>"-1", "battled_on"=>nil, "winning_pet_id"=>nil, "winning_user_id"=>nil, "battle_game_id"=>"1", "status"=>"accepted", "score"=>nil, "play_for_keeps"=>"false", "is_tie"=>"false", "winner_experience"=>"100", "loser_experience"=>"10", "winner_gold"=>"25", "updated_by"=>"1", "created_by"=>"1", "created_at"=>"2016-09-15 14:22:15 UTC", "updated_at"=>"2016-09-15 14:22:15 UTC", "battle_id"=>"15"}
+Unpermitted parameters: arena_id, battled_on, winning_pet_id, winning_user_id, score, play_for_keeps, is_tie, winner_experience, loser_experience, winner_gold, updated_by, created_by, created_at, updated_at, format, battle_id
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35mSQL (1.0ms)[0m  [1m[32mINSERT INTO "battles" ("id", "name", "call_auth_code", "original_id", "user1_id", "user2_id", "pet1_id", "pet2_id", "battle_game_id", "status", "updated_by", "created_by", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)[0m  [["id", 15], ["name", "Training"], ["call_auth_code", "81c6c97c-9bb0-4402-8c52-6b8d836e4cd5"], ["original_id", 15], ["user1_id", 1], ["user2_id", -1], ["pet1_id", 1], ["pet2_id", -1], ["battle_game_id", 1], ["status", "accepted"], ["updated_by", 1], ["created_by", 1], ["created_at", 2016-09-15 14:22:15 UTC], ["updated_at", 2016-09-15 14:22:15 UTC]]
+  [1m[35m (11.5ms)[0m  [1m[36mcommit transaction[0m
+Completed 200 OK in 18ms (ActiveRecord: 12.5ms)
+
+
+  [1m[36mBattle Load (0.5ms)[0m  [1m[34mSELECT  "battles".* FROM "battles" WHERE "battles"."id" = ? LIMIT ?[0m  [["id", 15], ["LIMIT", 1]]
+  [1m[36mBattleGame Load (0.0ms)[0m  [1m[34mSELECT  "battle_games".* FROM "battle_games" WHERE "battle_games"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35mSQL (1.0ms)[0m  [1m[33mUPDATE "battles" SET "score" = ?, "battled_on" = ?, "status" = ?, "winning_pet_id" = ?, "winning_user_id" = ?, "updated_at" = ? WHERE "battles"."id" = ?[0m  [["score", #<BigDecimal:d3b6870,'-0.202E2',18(27)>], ["battled_on", 2016-09-15 14:22:16 UTC], ["status", "battled"], ["winning_pet_id", -1], ["winning_user_id", -1], ["updated_at", 2016-09-15 14:22:16 UTC], ["id", 15]]
+  [1m[35m (11.5ms)[0m  [1m[36mcommit transaction[0m
+Started POST "//v1/battles/16/fight" for ::1 at 2016-09-15 08:22:16 -0600
+Processing by V1::BattlesController#fight as JSON
+  Parameters: {"id"=>"16", "name"=>"Training", "description"=>nil, "call_auth_code"=>"e464e3fc-0329-47c2-8358-805ec9df87ce", "arena_id"=>"1", "user1_id"=>"1", "user2_id"=>"-1", "pet1_id"=>"1", "pet2_id"=>"-1", "battled_on"=>nil, "winning_pet_id"=>nil, "winning_user_id"=>nil, "battle_game_id"=>"1", "status"=>"accepted", "score"=>nil, "play_for_keeps"=>"false", "is_tie"=>"false", "winner_experience"=>"100", "loser_experience"=>"10", "winner_gold"=>"25", "updated_by"=>"1", "created_by"=>"1", "created_at"=>"2016-09-15 14:22:16 UTC", "updated_at"=>"2016-09-15 14:22:16 UTC", "battle_id"=>"16"}
+Unpermitted parameters: arena_id, battled_on, winning_pet_id, winning_user_id, score, play_for_keeps, is_tie, winner_experience, loser_experience, winner_gold, updated_by, created_by, created_at, updated_at, format, battle_id
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35mSQL (1.0ms)[0m  [1m[32mINSERT INTO "battles" ("id", "name", "call_auth_code", "original_id", "user1_id", "user2_id", "pet1_id", "pet2_id", "battle_game_id", "status", "updated_by", "created_by", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)[0m  [["id", 16], ["name", "Training"], ["call_auth_code", "e464e3fc-0329-47c2-8358-805ec9df87ce"], ["original_id", 16], ["user1_id", 1], ["user2_id", -1], ["pet1_id", 1], ["pet2_id", -1], ["battle_game_id", 1], ["status", "accepted"], ["updated_by", 1], ["created_by", 1], ["created_at", 2016-09-15 14:22:16 UTC], ["updated_at", 2016-09-15 14:22:16 UTC]]
+  [1m[35m (11.5ms)[0m  [1m[36mcommit transaction[0m
+Completed 200 OK in 22ms (ActiveRecord: 12.5ms)
+
+
+  [1m[36mBattle Load (0.5ms)[0m  [1m[34mSELECT  "battles".* FROM "battles" WHERE "battles"."id" = ? LIMIT ?[0m  [["id", 16], ["LIMIT", 1]]
+  [1m[36mBattleGame Load (0.0ms)[0m  [1m[34mSELECT  "battle_games".* FROM "battle_games" WHERE "battle_games"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35mSQL (1.1ms)[0m  [1m[33mUPDATE "battles" SET "score" = ?, "battled_on" = ?, "status" = ?, "winning_pet_id" = ?, "winning_user_id" = ?, "updated_at" = ? WHERE "battles"."id" = ?[0m  [["score", #<BigDecimal:d41cd68,'-0.22E2',9(27)>], ["battled_on", 2016-09-15 14:22:17 UTC], ["status", "battled"], ["winning_pet_id", -1], ["winning_user_id", -1], ["updated_at", 2016-09-15 14:22:17 UTC], ["id", 16]]
+  [1m[35m (10.4ms)[0m  [1m[36mcommit transaction[0m
+Started POST "//v1/battles/17/fight" for ::1 at 2016-09-15 08:22:18 -0600
+Processing by V1::BattlesController#fight as JSON
+  Parameters: {"id"=>"17", "name"=>"Training", "description"=>nil, "call_auth_code"=>"61406ce1-2a35-4dc7-a874-69c703e9c404", "arena_id"=>"1", "user1_id"=>"1", "user2_id"=>"-1", "pet1_id"=>"1", "pet2_id"=>"-1", "battled_on"=>nil, "winning_pet_id"=>nil, "winning_user_id"=>nil, "battle_game_id"=>"1", "status"=>"accepted", "score"=>nil, "play_for_keeps"=>"false", "is_tie"=>"false", "winner_experience"=>"100", "loser_experience"=>"10", "winner_gold"=>"25", "updated_by"=>"1", "created_by"=>"1", "created_at"=>"2016-09-15 14:22:18 UTC", "updated_at"=>"2016-09-15 14:22:18 UTC", "battle_id"=>"17"}
+Unpermitted parameters: arena_id, battled_on, winning_pet_id, winning_user_id, score, play_for_keeps, is_tie, winner_experience, loser_experience, winner_gold, updated_by, created_by, created_at, updated_at, format, battle_id
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35mSQL (1.0ms)[0m  [1m[32mINSERT INTO "battles" ("id", "name", "call_auth_code", "original_id", "user1_id", "user2_id", "pet1_id", "pet2_id", "battle_game_id", "status", "updated_by", "created_by", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)[0m  [["id", 17], ["name", "Training"], ["call_auth_code", "61406ce1-2a35-4dc7-a874-69c703e9c404"], ["original_id", 17], ["user1_id", 1], ["user2_id", -1], ["pet1_id", 1], ["pet2_id", -1], ["battle_game_id", 1], ["status", "accepted"], ["updated_by", 1], ["created_by", 1], ["created_at", 2016-09-15 14:22:18 UTC], ["updated_at", 2016-09-15 14:22:18 UTC]]
+  [1m[35m (11.5ms)[0m  [1m[36mcommit transaction[0m
+Completed 200 OK in 20ms (ActiveRecord: 12.5ms)
+
+
+  [1m[36mBattle Load (0.5ms)[0m  [1m[34mSELECT  "battles".* FROM "battles" WHERE "battles"."id" = ? LIMIT ?[0m  [["id", 17], ["LIMIT", 1]]
+  [1m[36mBattleGame Load (0.5ms)[0m  [1m[34mSELECT  "battle_games".* FROM "battle_games" WHERE "battle_games"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35mSQL (1.0ms)[0m  [1m[33mUPDATE "battles" SET "score" = ?, "battled_on" = ?, "status" = ?, "winning_pet_id" = ?, "winning_user_id" = ?, "updated_at" = ? WHERE "battles"."id" = ?[0m  [["score", #<BigDecimal:d506558,'-0.227E2',18(27)>], ["battled_on", 2016-09-15 14:22:19 UTC], ["status", "battled"], ["winning_pet_id", -1], ["winning_user_id", -1], ["updated_at", 2016-09-15 14:22:19 UTC], ["id", 17]]
+  [1m[35m (9.9ms)[0m  [1m[36mcommit transaction[0m
+Started POST "//v1/battles/18/fight" for ::1 at 2016-09-15 08:22:19 -0600
+Processing by V1::BattlesController#fight as JSON
+  Parameters: {"id"=>"18", "name"=>"Training", "description"=>nil, "call_auth_code"=>"807b3720-6846-4eab-97dd-61463e12f054", "arena_id"=>"1", "user1_id"=>"1", "user2_id"=>"-1", "pet1_id"=>"1", "pet2_id"=>"-1", "battled_on"=>nil, "winning_pet_id"=>nil, "winning_user_id"=>nil, "battle_game_id"=>"1", "status"=>"accepted", "score"=>nil, "play_for_keeps"=>"false", "is_tie"=>"false", "winner_experience"=>"100", "loser_experience"=>"10", "winner_gold"=>"25", "updated_by"=>"1", "created_by"=>"1", "created_at"=>"2016-09-15 14:22:19 UTC", "updated_at"=>"2016-09-15 14:22:19 UTC", "battle_id"=>"18"}
+Unpermitted parameters: arena_id, battled_on, winning_pet_id, winning_user_id, score, play_for_keeps, is_tie, winner_experience, loser_experience, winner_gold, updated_by, created_by, created_at, updated_at, format, battle_id
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35mSQL (1.0ms)[0m  [1m[32mINSERT INTO "battles" ("id", "name", "call_auth_code", "original_id", "user1_id", "user2_id", "pet1_id", "pet2_id", "battle_game_id", "status", "updated_by", "created_by", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)[0m  [["id", 18], ["name", "Training"], ["call_auth_code", "807b3720-6846-4eab-97dd-61463e12f054"], ["original_id", 18], ["user1_id", 1], ["user2_id", -1], ["pet1_id", 1], ["pet2_id", -1], ["battle_game_id", 1], ["status", "accepted"], ["updated_by", 1], ["created_by", 1], ["created_at", 2016-09-15 14:22:20 UTC], ["updated_at", 2016-09-15 14:22:20 UTC]]
+  [1m[35m (10.5ms)[0m  [1m[36mcommit transaction[0m
+Completed 200 OK in 18ms (ActiveRecord: 11.5ms)
+
+
+  [1m[36mBattle Load (0.5ms)[0m  [1m[34mSELECT  "battles".* FROM "battles" WHERE "battles"."id" = ? LIMIT ?[0m  [["id", 18], ["LIMIT", 1]]
+  [1m[36mBattleGame Load (0.5ms)[0m  [1m[34mSELECT  "battle_games".* FROM "battle_games" WHERE "battle_games"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35mSQL (1.0ms)[0m  [1m[33mUPDATE "battles" SET "score" = ?, "battled_on" = ?, "status" = ?, "winning_pet_id" = ?, "winning_user_id" = ?, "updated_at" = ? WHERE "battles"."id" = ?[0m  [["score", #<BigDecimal:d59d320,'-0.172E2',18(27)>], ["battled_on", 2016-09-15 14:22:20 UTC], ["status", "battled"], ["winning_pet_id", -1], ["winning_user_id", -1], ["updated_at", 2016-09-15 14:22:20 UTC], ["id", 18]]
+  [1m[35m (10.5ms)[0m  [1m[36mcommit transaction[0m
+Started POST "//v1/battles/19/fight" for ::1 at 2016-09-15 08:22:20 -0600
+Processing by V1::BattlesController#fight as JSON
+  Parameters: {"id"=>"19", "name"=>"Training", "description"=>nil, "call_auth_code"=>"2f376a45-e294-436e-b006-efd60ad63e60", "arena_id"=>"1", "user1_id"=>"1", "user2_id"=>"-1", "pet1_id"=>"1", "pet2_id"=>"-1", "battled_on"=>nil, "winning_pet_id"=>nil, "winning_user_id"=>nil, "battle_game_id"=>"1", "status"=>"accepted", "score"=>nil, "play_for_keeps"=>"false", "is_tie"=>"false", "winner_experience"=>"100", "loser_experience"=>"10", "winner_gold"=>"25", "updated_by"=>"1", "created_by"=>"1", "created_at"=>"2016-09-15 14:22:20 UTC", "updated_at"=>"2016-09-15 14:22:20 UTC", "battle_id"=>"19"}
+Unpermitted parameters: arena_id, battled_on, winning_pet_id, winning_user_id, score, play_for_keeps, is_tie, winner_experience, loser_experience, winner_gold, updated_by, created_by, created_at, updated_at, format, battle_id
+  [1m[35m (0.5ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35mSQL (1.5ms)[0m  [1m[32mINSERT INTO "battles" ("id", "name", "call_auth_code", "original_id", "user1_id", "user2_id", "pet1_id", "pet2_id", "battle_game_id", "status", "updated_by", "created_by", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)[0m  [["id", 19], ["name", "Training"], ["call_auth_code", "2f376a45-e294-436e-b006-efd60ad63e60"], ["original_id", 19], ["user1_id", 1], ["user2_id", -1], ["pet1_id", 1], ["pet2_id", -1], ["battle_game_id", 1], ["status", "accepted"], ["updated_by", 1], ["created_by", 1], ["created_at", 2016-09-15 14:22:20 UTC], ["updated_at", 2016-09-15 14:22:20 UTC]]
+  [1m[35m (12.5ms)[0m  [1m[36mcommit transaction[0m
+Completed 200 OK in 25ms (ActiveRecord: 14.5ms)
+
+
+  [1m[36mBattle Load (1.5ms)[0m  [1m[34mSELECT  "battles".* FROM "battles" WHERE "battles"."id" = ? LIMIT ?[0m  [["id", 19], ["LIMIT", 1]]
+  [1m[36mBattleGame Load (0.5ms)[0m  [1m[34mSELECT  "battle_games".* FROM "battle_games" WHERE "battle_games"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35mSQL (1.0ms)[0m  [1m[33mUPDATE "battles" SET "score" = ?, "battled_on" = ?, "status" = ?, "winning_pet_id" = ?, "winning_user_id" = ?, "updated_at" = ? WHERE "battles"."id" = ?[0m  [["score", #<BigDecimal:d6121a0,'-0.195E2',18(27)>], ["battled_on", 2016-09-15 14:22:21 UTC], ["status", "battled"], ["winning_pet_id", -1], ["winning_user_id", -1], ["updated_at", 2016-09-15 14:22:21 UTC], ["id", 19]]
+  [1m[35m (15.7ms)[0m  [1m[36mcommit transaction[0m
+Started POST "//v1/battles/20/fight" for ::1 at 2016-09-15 08:22:22 -0600
+Processing by V1::BattlesController#fight as JSON
+  Parameters: {"id"=>"20", "name"=>"Training", "description"=>nil, "call_auth_code"=>"0fe109fc-526e-42e1-a8f2-129fc7e9cd61", "arena_id"=>"1", "user1_id"=>"1", "user2_id"=>"-1", "pet1_id"=>"1", "pet2_id"=>"-1", "battled_on"=>nil, "winning_pet_id"=>nil, "winning_user_id"=>nil, "battle_game_id"=>"1", "status"=>"accepted", "score"=>nil, "play_for_keeps"=>"false", "is_tie"=>"false", "winner_experience"=>"100", "loser_experience"=>"10", "winner_gold"=>"25", "updated_by"=>"1", "created_by"=>"1", "created_at"=>"2016-09-15 14:22:22 UTC", "updated_at"=>"2016-09-15 14:22:22 UTC", "battle_id"=>"20"}
+Unpermitted parameters: arena_id, battled_on, winning_pet_id, winning_user_id, score, play_for_keeps, is_tie, winner_experience, loser_experience, winner_gold, updated_by, created_by, created_at, updated_at, format, battle_id
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35mSQL (1.0ms)[0m  [1m[32mINSERT INTO "battles" ("id", "name", "call_auth_code", "original_id", "user1_id", "user2_id", "pet1_id", "pet2_id", "battle_game_id", "status", "updated_by", "created_by", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)[0m  [["id", 20], ["name", "Training"], ["call_auth_code", "0fe109fc-526e-42e1-a8f2-129fc7e9cd61"], ["original_id", 20], ["user1_id", 1], ["user2_id", -1], ["pet1_id", 1], ["pet2_id", -1], ["battle_game_id", 1], ["status", "accepted"], ["updated_by", 1], ["created_by", 1], ["created_at", 2016-09-15 14:22:22 UTC], ["updated_at", 2016-09-15 14:22:22 UTC]]
+  [1m[35m (11.5ms)[0m  [1m[36mcommit transaction[0m
+Completed 200 OK in 20ms (ActiveRecord: 12.5ms)
+
+
+  [1m[36mBattle Load (1.0ms)[0m  [1m[34mSELECT  "battles".* FROM "battles" WHERE "battles"."id" = ? LIMIT ?[0m  [["id", 20], ["LIMIT", 1]]
+  [1m[36mBattleGame Load (0.5ms)[0m  [1m[34mSELECT  "battle_games".* FROM "battle_games" WHERE "battle_games"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35mSQL (0.5ms)[0m  [1m[33mUPDATE "battles" SET "score" = ?, "battled_on" = ?, "status" = ?, "winning_pet_id" = ?, "winning_user_id" = ?, "updated_at" = ? WHERE "battles"."id" = ?[0m  [["score", #<BigDecimal:d635588,'-0.269E2',18(27)>], ["battled_on", 2016-09-15 14:22:23 UTC], ["status", "battled"], ["winning_pet_id", -1], ["winning_user_id", -1], ["updated_at", 2016-09-15 14:22:23 UTC], ["id", 20]]
+  [1m[35m (11.0ms)[0m  [1m[36mcommit transaction[0m

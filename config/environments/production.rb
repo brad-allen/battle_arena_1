@@ -89,4 +89,6 @@ Rails.application.configure do
   BATTLE_PET_MANAGER_ROOT_URL = 'https://polar-plains-48766.herokuapp.com/'
 
   BATTLE_PET_MANAGER_ROOT_PORT = 443
+
+  USE_SSL = true
 end
