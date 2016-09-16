@@ -15,7 +15,7 @@ class V1::BattlesController < V1::V1Controller
   end
 
   def fight
-    fight_values = params.permit(:id, :name, :description, :call_auth_code, :user1_id, :user2_id, :pet1_id, :pet2_id, :status, :battle_game_id, :status)
+    fight_values = params.permit(:name, :description, :call_auth_code, :user1_id, :user2_id, :pet1_id, :pet2_id, :status, :battle_game_id, :status)
     battle = Battle.new(fight_values)
     battle.original_id = params[:id]
     battle.created_by = params[:user1_id].to_i
