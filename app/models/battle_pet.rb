@@ -2,19 +2,19 @@ class BattlePet
   
   attr_accessor  :id, :status, :account_id, :strength, :agility, :wit, :speed, :wisdom, :intelligence, :magic, :chi, :healing_power, :experience
   
-  def self.get_battle_pet pet_id
+  def self.get_battle_pet pet_id, auth_code
 
-    uri = URI.parse(BATTLE_PET_MANAGER_ROOT_URL + 'v1/battle_pets/' + pet_id.to_s + "/authed_get")
-      http = Net::HTTP.new(uri.host, BATTLE_PET_MANAGER_ROOT_PORT)
+    uri = URI.parse(BATTLE_PET_MANAGER_ROOT_URL + 'v1/battle_pets/' + pet_id.to_s + "/authed_get_pet_for_battle")
+
+    http = Net::HTTP.new(uri.host, BATTLE_PET_MANAGER_ROOT_PORT)
       if USE_SSL
         http.use_ssl = true
-        http.verify_mode = OpenSSL::SSL::VERIFY_NONE # Sets the HTTPS verify mode
-      end
-      request = Net::HTTP::Get.new(uri.request_uri)
-      response = http.request(request)
- 
-      data = JSON.parse(response.body)
-      parse_pet_response_body data
+        http.verify_mode = OpenSSL::SSL::VERIFY_NONE
+    end
+    request = Net::HTTP::Post.new(uri.request_uri)
+    request.set_form_data({ call_auth_code: auth_code })
+    response = http.request(request)
+    parse_pet_response_body JSON.parse(response.body)
 
   end
 
