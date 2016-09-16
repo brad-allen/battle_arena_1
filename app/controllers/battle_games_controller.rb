@@ -35,7 +35,7 @@ class BattleGamesController < ApplicationController
 
   def update
     respond_to do |format|
-      @battle.updated_by = admin_user_id
+      @battle_game.updated_by = admin_user_id
       if @battle_game.update(battle_game_params)
         format.html { redirect_to @battle_game, notice: 'Battle game was successfully updated.' }
         format.json { render :show, status: :ok, location: @battle_game }
