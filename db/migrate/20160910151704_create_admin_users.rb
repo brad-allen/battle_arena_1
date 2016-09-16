@@ -10,5 +10,11 @@ class CreateAdminUsers < ActiveRecord::Migration[5.0]
 
       t.timestamps
     end
+
+
+    add_index :admin_users, :username, :name => 'admin_users_username_idx'
+    add_index :admin_users, :user_id, :name => 'admin_users_user_id_idx'
+    add_index :admin_users, :status, :name => 'admin_users_status_idx'
+
   end
 end

@@ -21,5 +21,10 @@ class CreateBattleGames < ActiveRecord::Migration[5.0]
 
       t.timestamps
     end
+
+
+    add_index :battle_games, :name, :name => 'battle_games_name_idx'
+    add_index :battle_games, :status, :name => 'battle_games_status_idx'
+
   end
 end

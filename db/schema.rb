@@ -21,6 +21,9 @@ ActiveRecord::Schema.define(version: 20160910151704) do
     t.integer  "created_by"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["status"], name: "admin_users_status_idx"
+    t.index ["user_id"], name: "admin_users_user_id_idx"
+    t.index ["username"], name: "admin_users_username_idx"
   end
 
   create_table "battle_games", force: :cascade do |t|
@@ -43,6 +46,8 @@ ActiveRecord::Schema.define(version: 20160910151704) do
     t.integer  "created_by"
     t.datetime "created_at",                        null: false
     t.datetime "updated_at",                        null: false
+    t.index ["name"], name: "battle_games_name_idx"
+    t.index ["status"], name: "battle_games_status_idx"
   end
 
   create_table "battles", force: :cascade do |t|
@@ -70,6 +75,13 @@ ActiveRecord::Schema.define(version: 20160910151704) do
     t.integer  "created_by"
     t.datetime "created_at",                        null: false
     t.datetime "updated_at",                        null: false
+    t.index ["battled_on"], name: "battles_battled_on_idx"
+    t.index ["call_auth_code"], name: "battles_call_auth_code_idx"
+    t.index ["name"], name: "battles_name_idx"
+    t.index ["pet1_id"], name: "battles_pet1_id_idx"
+    t.index ["pet2_id"], name: "battles_pet2_id_idx"
+    t.index ["user1_id"], name: "battles_user1_id_idx"
+    t.index ["user2_id"], name: "battles_user2_id_idx"
   end
 
   create_table "users", force: :cascade do |t|
