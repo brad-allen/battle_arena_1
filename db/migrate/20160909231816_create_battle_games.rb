@@ -11,7 +11,10 @@ class CreateBattleGames < ActiveRecord::Migration[5.0]
       t.decimal :intelligence, default: 0, null: false
       t.decimal :magic, default: 0, null: false
       t.decimal :chi, default: 0, null: false
-      t.decimal :healing, default: 0, null: false
+      t.decimal :healing, default: 0, null: false      
+      t.integer :winner_experience, default: 0, null: false
+      t.integer :loser_experience, default: 0, null: false
+      t.integer :winner_gold, default: 0, null: false
       t.string :status
       t.integer :updated_by
       t.integer :created_by

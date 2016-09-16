@@ -29,6 +29,9 @@ class Battle < ApplicationRecord
 		self.score = score 
 		self.battled_on = DateTime.now.new_offset(0)
 		self.status = "battled"
+		self.winner_experience = battle_game.winner_experience
+		self.loser_experience = battle_game.loser_experience
+		self.winner_gold = battle_game.winner_gold
 
 		if score != 0
 			self.winning_pet_id = score > 0 ? pet1_id : pet2_id

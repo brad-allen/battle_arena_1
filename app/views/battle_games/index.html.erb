@@ -17,6 +17,9 @@
       <th>Chi</th>
       <th>Healing</th>
       <th>Status</th>
+      <th>Winner experience</th>
+      <th>Loser experience</th>
+      <th>Winner gold</th>
       <th>Updated by</th>
       <th>Created by</th>
       <th colspan="2"></th>
@@ -38,6 +41,9 @@
         <td><%= battle_game.chi %></td>
         <td><%= battle_game.healing %></td>
         <td><%= battle_game.status %></td>
+        <td><%= battle.winner_gold %></td>
+        <td><%= battle.updated_by %></td>
+        <td><%= battle.created_by %></td>
         <td><%= battle_game.updated_by %></td>
         <td><%= battle_game.created_by %></td>
         <td><%= link_to 'Show', battle_game %></td>

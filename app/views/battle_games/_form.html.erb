@@ -73,6 +73,20 @@
 
 
   <div class="field">
+    <%= f.label :winner_experience %>
+    <%= f.number_field :winner_experience %>
+  </div>
+
+  <div class="field">
+    <%= f.label :loser_experience %>
+    <%= f.number_field :loser_experience %>
+  </div>
+
+  <div class="field">
+    <%= f.label :winner_gold %>
+    <%= f.number_field :winner_gold %>
+  </div>
+  <div class="field">
     <%= f.label :updated_by  %>
     <%= f.number_field :updated_by, :disabled=>true %>
   </div>

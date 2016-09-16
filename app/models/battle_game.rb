@@ -10,5 +10,7 @@ class BattleGame < ApplicationRecord
   validates :magic, presence: true, numericality: { only_decimal: true }
   validates :chi, presence: true, numericality: { only_decimal: true }
   validates :healing, presence: true, numericality: { only_decimal: true }
-
+  validates :winner_experience, presence: true, numericality: { only_integer: true }
+  validates :loser_experience, presence: true, numericality: { only_integer: true }
+  validates :winner_gold, presence: true, numericality: { only_integer: true }
 end
