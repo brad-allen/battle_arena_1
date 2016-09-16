@@ -2,7 +2,6 @@ require 'json'
 
 class Battle < ApplicationRecord
 	validates :name, presence: true, length: { maximum: 100 }
-  	validates :call_auth_code, presence: true
   	validates :user1_id, presence: true, numericality: { only_integer: true }
   	validates :user2_id, presence: true, numericality: { only_integer: true }
   	validates :pet1_id, presence: true, numericality: { only_integer: true }
@@ -34,7 +33,6 @@ class Battle < ApplicationRecord
 			self.winning_pet_id =  pet1.experience > pet2.experience ? pet1_id : pet2_id
 			self.winning_user_id =  pet1.experience > pet2.experience ? user1_id : user2_id
 		end
-		self.save
 	end
 
 
@@ -52,9 +50,12 @@ class Battle < ApplicationRecord
 	    request.set_form_data(self.as_json)
 
 	    http.request(request)
+
+	    self.call_auth_code = nil
+	    self.save
 	end
 
-	
+
 	private
 
 	def calculate_battle_results pet1, pet2, battle_game
