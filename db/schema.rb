@@ -26,20 +26,23 @@ ActiveRecord::Schema.define(version: 20160910151704) do
   create_table "battle_games", force: :cascade do |t|
     t.string   "name"
     t.string   "description"
-    t.decimal  "strength",     default: "0.0", null: false
-    t.decimal  "agility",      default: "0.0", null: false
-    t.decimal  "wit",          default: "0.0", null: false
-    t.decimal  "speed",        default: "0.0", null: false
-    t.decimal  "wisdom",       default: "0.0", null: false
-    t.decimal  "intelligence", default: "0.0", null: false
-    t.decimal  "magic",        default: "0.0", null: false
-    t.decimal  "chi",          default: "0.0", null: false
-    t.decimal  "healing",      default: "0.0", null: false
+    t.decimal  "strength",          default: "0.0", null: false
+    t.decimal  "agility",           default: "0.0", null: false
+    t.decimal  "wit",               default: "0.0", null: false
+    t.decimal  "speed",             default: "0.0", null: false
+    t.decimal  "wisdom",            default: "0.0", null: false
+    t.decimal  "intelligence",      default: "0.0", null: false
+    t.decimal  "magic",             default: "0.0", null: false
+    t.decimal  "chi",               default: "0.0", null: false
+    t.decimal  "healing",           default: "0.0", null: false
+    t.integer  "winner_experience", default: 0,     null: false
+    t.integer  "loser_experience",  default: 0,     null: false
+    t.integer  "winner_gold",       default: 0,     null: false
     t.string   "status"
     t.integer  "updated_by"
     t.integer  "created_by"
-    t.datetime "created_at",                   null: false
-    t.datetime "updated_at",                   null: false
+    t.datetime "created_at",                        null: false
+    t.datetime "updated_at",                        null: false
   end
 
   create_table "battles", force: :cascade do |t|
